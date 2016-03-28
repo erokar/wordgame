@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<head>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/app.module.js"></script>
+    <script src="js/app.controller.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body ng-app="app" ng-controller="WordController">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div align="center">
+                    <button class="btn btn-primary btn-lg btn-default letter"
+                            ng-repeat="letter in ALPHABET"
+                            ng-disabled="letterAlreadyGuessed(letter)"
+                            ng-click="evaluateGuess(letter)">
+                        {{ letter }}
+                    </button>
+                    <div>
+                        <h2><span ng-repeat="letter in guessedWord track by $index"> {{ letter }}<span></h2>
+                    </div>
+                    <div>
+                        <h3>{{ feedback }}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-11">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-danger" style="width: {{guessesUsedAsPercentage()}}%;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <strong>{{ nrOfGuesses }} / {{ MAX_NR_OF_GUESSES }}</strong>
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-lg btn-success" ng-click="initNewGame()">Ny omgang</button>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</body>
+</html>
