@@ -47,15 +47,6 @@
             return lettersGuessed.indexOf(char) > -1;
         }
 
-        // Listen for user keypresses
-        $(document).keypress(function (event) {
-            var char = String.fromCharCode(event.which).toUpperCase();
-            if (validLetter(char)) {
-                $scope.evaluateGuess(char);
-                $scope.$digest();
-            }
-        });
-
         function wordContainsLetter(letter) {
             return $scope.word.indexOf(letter) > -1;
         }
@@ -85,6 +76,15 @@
 
         /* INIT */
         $scope.initNewGame();
+
+        // Listen for user keypresses
+        $(document).keypress(function (event) {
+            var char = String.fromCharCode(event.which).toUpperCase();
+            if (validLetter(char)) {
+                $scope.evaluateGuess(char);
+                $scope.$digest();
+            }
+        });
 
     }
 
